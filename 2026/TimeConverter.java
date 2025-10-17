@@ -62,67 +62,33 @@
 
 // INVALID INPUT
 import java.util.Scanner;
-
-public class TimeConverter {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter time (HH:MM AM/PM): ");
-        String input = sc.nextLine().trim();
-
- 
-        if (!input.contains(" ")) {
-            System.out.println("INVALID INPUT");
-            return;
+class time
+{
+    public static void main()
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter the normal hour");
+        int h=sc.nextInt();
+        System.out.println("enter the min");
+        int m=sc.nextInt();
+        System.out.println("enter wheter am or pm");
+        String a=sc.next();
+        int i=h+12;
+        if(h>=13)
+        System.out.println("error");
+        if(m>=60)
+        System.out.println("error");
+        else if(a.equals("am"))
+        {
+        System.out.println("railway time is ");
+        System.out.println(h+":"+m+a);
         }
-
-        String[] parts = input.split(" ");
-        if (parts.length != 2) {
-            System.out.println("INVALID INPUT");
-            return;
+        else 
+        {
+        System.out.println("railway time is ");
+        System.out.println(i+":"+m+a);
         }
-
-        String time = parts[0];
-        String period = parts[1];
-
-        if (!period.equals("AM") && !period.equals("PM")) {
-            System.out.println("INVALID INPUT");
-            return;
-        }
-
-        if (!time.contains(":")) {
-            System.out.println("INVALID INPUT");
-            return;
-        }
-
-        String[] hm = time.split(":");
-        if (hm.length != 2) {
-            System.out.println("INVALID INPUT");
-            return;
-        }
-
-        int hour, minute;
-        try {
-            hour = Integer.parseInt(hm[0]);
-            minute = Integer.parseInt(hm[1]);
-        } catch (NumberFormatException e) {
-            System.out.println("INVALID INPUT");
-            return;
-        }
-
-        if (hour < 1 || hour > 12 || minute < 0 || minute > 59) {
-            System.out.println("INVALID INPUT");
-            return;
-        }
-        if (period.equals("AM") && hour == 12) {
-            hour = 0;
-        } else if (period.equals("PM") && hour != 12) {
-            hour += 12;
-        }
-
-        
-        String hourStr = (hour < 10) ? "0" + hour : "" + hour;
-        String minuteStr = (minute < 10) ? "0" + minute : "" + minute;
-
-        System.out.println(hourStr + ":" + minuteStr);
+    }
+}
     }
 }
